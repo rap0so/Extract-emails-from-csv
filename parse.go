@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"regexp"
 )
 
 func parse(fileName string) []string {
@@ -25,8 +24,7 @@ func parse(fileName string) []string {
 		}
 
 		for _, cell := range valueOnRow {
-			emailMatch, _ := regexp.MatchString(".*@.*", cell)
-			if emailMatch {
+			if regexEmailValidator(cell) {
 				matchedEmails = append(matchedEmails, cell)
 			}
 		}
